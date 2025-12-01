@@ -1,25 +1,48 @@
 # DineEase – Restaurant Online Ordering System
-
+README
+Summary
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+DineEase is a digital restaurant management and online ordering system. It allows customers to browse menus, place orders, and track their orders in real time. Restaurant admins can manage menu items, update order statuses, and view sales performance. This project demonstrates the **READ functionality** and database integration using Node.js, Express, MySQL, and Pug templates.
 
-## Table of Contents
 
-- [Project Overview](#project-overview)  
-- [Features](#features)  
-- [Technology Stack](#technology-stack)  
-- [Installation](#installation)  
-- [Database Setup](#database-setup)  
-- [Running the Application](#running-the-application)  
-- [Project Structure](#project-structure)  
-- [Screenshots](#screenshots)  
-- [Team](#team)  
-- [License](#license)
+Brief instructions to run app with Node.js and to initialize a local MySQL database using XAMPP
 
----
+Prerequisites
+Node.js (v14+ recommended)
+npm (comes with Node.js)
+XAMPP (includes Apache + MySQL / MariaDB)
+The SQL dump file (sql_dump.sql) included in this repository
+Setup (project)
+Open a terminal in the project root (where index.js lives):
+cd node_template
+Install dependencies:
+npm install
+Configure database connection
+COnfigure environmental variables in .env file. If not then rename env_sample.txt to .env. Backup contents if needed
+
+DB_HOST=
+DB_PORT=
+DB_USER=
+DB_PASS=
+DB_NAME=
+Adjust keys to match your project's configuration names.
+
+Initialize XAMPP and MySQL
+Start XAMPP Control Panel.
+Start Apache and MySQL services.
+Open phpMyAdmin: http://localhost/phpmyadmin
+Paste SQL dump into sql tab of phpMyAdmin
+Run the application
+Start the Node.js process:
+
+node index.js
+For PowerShell
+Allows to run Scripts
+
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
 
 ## Project Overview
 
-DineEase is a digital restaurant management and online ordering system. It allows customers to browse menus, place orders, and track their orders in real time. Restaurant admins can manage menu items, update order statuses, and view sales performance. This project demonstrates the **READ functionality** and database integration using Node.js, Express, MySQL, and Pug templates.
 
 ---
 
