@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .item-page
+    img.item-img(src=item.image_url || "/placeholder.jpg")
+
+    .item-details
+      h2 #{item.name}
+      p.description #{item.description}
+      p.price Price: $#{item.price}
+
+      a.btn(href="/menu") ← Back to Menu
