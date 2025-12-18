@@ -2,6 +2,32 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+Import files from Github:
+INSTALL GIT (if not installed)
+
+Check first:
+
+git --version
+
+
+If not installed  download & install:
+ https://git-scm.com/downloads
+
+(Choose Windows, keep default options)
+
+ STEP 2: OPEN CMD / POWERSHELL / VS CODE TERMINAL
+
+Go to the folder where you want the project:
+
+cd Desktop
+
+(or any path you want)
+
+ STEP 3: CLONE GITHUB REPOSITORY (FULL FOLDER)
+🔹 Command: git clone https://github.com/USERNAME/REPOSITORY_NAME.git
+
+
+Introduction:
 
 DineEase is a digital restaurant management and online ordering system. It allows customers to browse menus, place orders, and track their orders in real time. Restaurant admins can manage menu items, update order statuses, and view sales performance. This project demonstrates the **READ functionality** and database integration using Node.js, Express, MySQL, and Pug templates.
 
