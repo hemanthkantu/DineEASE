@@ -1,21 +1,24 @@
 extends layout
 
 block content
-  .page-container
-    h1.page-title Your Cart
+  .cart-container
+    h1.cart-heading Your Cart
 
     if cart.length === 0
       p.empty-cart Your cart is empty 😔
       a.btn(href="/menu") Browse Menu
     else
       .cart-box
-        each item in cart
+        each item, index in cart
           .cart-item
-            span= item.name
-            span ₹#{item.price}
-            span Qty: #{item.qty}
+            .item-info
+              h3= item.name
+              span.price ₹#{item.price}
+            form(method="POST", action="/cart/delete")
+              input(type="hidden", name="index", value=index)
+              button.remove-btn(type="submit") ❌ Remove
 
         hr
-        h3 Total: ₹#{total}
-
-        a.btn.checkout-btn(href="/checkout") Proceed to Checkout
+        .cart-summary
+          h3 Total: ₹#{total}
+          a.checkout-btn(href="/checkout") Proceed to Checkout
