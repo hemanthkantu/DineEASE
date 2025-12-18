@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .auth-container
+    .auth-card
+      h2 Create Account 🍽️
+      p.subtext Join DineEase and start ordering today
+
+      form(method="POST", action="/register")
+        .input-group
+          label Full Name
+          input(type="text", name="name", required, placeholder="Your full name")
+
+        .input-group
+          label Email
+          input(type="email", name="email", required, placeholder="you@example.com")
+
+        .input-group
+          label Password
+          input(type="password", name="password", required, placeholder="Minimum 6 characters")
+
+        button.btn-primary(type="submit") Register
+
+      .auth-footer
+        p Already have an account?
+        a(href="/login") Login

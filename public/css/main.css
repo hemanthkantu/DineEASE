@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #ff7a00;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+}
+
+.navbar a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hero {
+  padding: 120px 80px;
+}
+
+.hero h1 {
+  font-size: 56px;
+}
+
+.search-box {
+  margin: 30px 0;
+}
+
+.search-box input {
+  padding: 14px;
+  width: 300px;
+  border-radius: 25px;
+  border: none;
+}
+
+.search-box button {
+  padding: 14px 24px;
+  border-radius: 25px;
+  border: none;
+  background: white;
+  color: #ff7a00;
+  font-weight: bold;
+}
+
+.auth-container {
+  background: white;
+  color: black;
+  width: 350px;
+  margin: 100px auto;
+  padding: 40px;
+  border-radius: 15px;
+}
+
+.auth-container input,
+.auth-container button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+}
+
+.profile-card {
+  background: white;
+  color: black;
+  width: 400px;
+  margin: 100px auto;
+  padding: 40px;
+  border-radius: 20px;
+}

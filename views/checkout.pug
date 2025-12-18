@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .page-container
+    h1.page-title Checkout
+
+    .checkout-box
+      h3 Order Summary
+
+      each item in cart
+        p #{item.name} × #{item.qty} — ₹#{item.price * item.qty}
+
+      hr
+      h2 Total Payable: ₹#{total}
+
+      a.btn.pay-btn(href="/payment") Continue to Payment

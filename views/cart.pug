@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .page-container
+    h1.page-title Your Cart
+
+    if cart.length === 0
+      p.empty-cart Your cart is empty 😔
+      a.btn(href="/menu") Browse Menu
+    else
+      .cart-box
+        each item in cart
+          .cart-item
+            span= item.name
+            span ₹#{item.price}
+            span Qty: #{item.qty}
+
+        hr
+        h3 Total: ₹#{total}
+
+        a.btn.checkout-btn(href="/checkout") Proceed to Checkout

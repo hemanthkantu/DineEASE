@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .menu-container
+    h1.menu-heading Explore Our Menu 🍽
+
+    .menu-grid
+      each item in menu
+        .menu-box
+          img.menu-img(src=item.image alt=item.name)
+
+          .menu-info
+            h3 #{item.name}
+            p.desc #{item.description}
+            
+            .menu-footer
+              span.price ₹#{item.price}
+              
+              form(action="/cart/add" method="POST")
+                input(type="hidden" name="id" value=item.item_id)
+                input(type="hidden" name="name" value=item.name)
+                input(type="hidden" name="price" value=item.price)
+                button.add-btn(type="submit") Add to Cart

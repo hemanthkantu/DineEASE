@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title DineEase
+    link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet" href="/css/menu.css")
+  body
+    header.navbar
+  .nav-wrapper
+    .brand
+      a(href="/") DineEase
+
+    nav.nav-menu
+      a.nav-link(href="/") Home
+      a.nav-link(href="/menu") Menu
+
+      if user
+        .user-dropdown
+          span.user-name #{user.name}
+          span.arrow ▾
+          .dropdown-menu
+            a(href="/profile") Profile
+            a(href="/cart") Cart
+            a(href="/logout") Logout
+      else
+        a.btn-nav.login(href="/login") Login
+        a.btn-nav.register(href="/register") Register
+
+
+    block content

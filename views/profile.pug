@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .profile-container
+    .profile-card
+      img.avatar(src="https://www.bing.com/images/search?view=detailV2&ccid=AgJzPoLY&id=857DAA913704BF010AD22929A1E7627B13080F1A&thid=OIP.AgJzPoLYlzxa0pyusFRN0AHaNk&mediaurl=https%3a%2f%2fi.pinimg.com%2f736x%2f97%2f08%2fe4%2f9708e4aaa2002c1c0ca098e953c786bf.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.0202733e82d8973c5ad29caeb0544dd0%3frik%3dGg8IE3ti56EpKQ%26pid%3dImgRaw%26r%3d0&exph=1348&expw=736&q=prabhas&FORM=IRPRST&ck=48EA8D450BDF8B7E954AD7B50BC6F622&selectedIndex=6&itb=0&ajaxhist=0&ajaxserp=0")
+      h2 Hello #{user.name} 👋
+      p.email #{user.email}
+
+      .actions
+        a.btn(href="/menu") 🍽 Explore Menu
+        a.btn.secondary(href="/cart") 🛒 View Cart
+        a.btn.logout(href="/auth/logout") 🚪 Logout

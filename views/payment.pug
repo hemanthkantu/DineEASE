@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .page-container
+    h1.page-title Payment
+
+    .payment-box
+      h3 Choose Payment Method
+
+      form(action="/payment/success" method="POST")
+        .payment-option
+          input(type="radio" name="method" checked)
+          span Credit / Debit Card
+
+        .payment-option
+          input(type="radio" name="method")
+          span UPI
+
+        .payment-option
+          input(type="radio" name="method")
+          span Cash on Delivery
+
+        hr
+        h2 Total Amount: ₹#{total}
+
+        button.btn.pay-btn(type="submit") Pay Now
