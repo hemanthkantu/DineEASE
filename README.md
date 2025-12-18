@@ -125,36 +125,35 @@ Visit:
 http://localhost/phpmyadmin
 
 Step 3 — Create the Database
-CREATE DATABASE dineease;
-USE dineease;
-
--- Create database
+-- ==============================
+-- CREATE DATABASE
+-- ==============================
 CREATE DATABASE IF NOT EXISTS dineease;
 USE dineease;
 
--- =========================
+-- ==============================
 -- USERS TABLE
--- =========================
+-- ==============================
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role ENUM('customer', 'admin') DEFAULT 'customer',
+    name VARCHAR(100),
+    email VARCHAR(150) UNIQUE,
+    password VARCHAR(255),
+    role ENUM('customer','admin') DEFAULT 'customer',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+);
 
--- =========================
+-- ==============================
 -- CATEGORIES TABLE
--- =========================
+-- ==============================
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL
-) ENGINE=InnoDB;
+);
 
--- =========================
+-- ==============================
 -- MENU ITEMS TABLE
--- =========================
+-- ==============================
 CREATE TABLE menu_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
@@ -164,48 +163,78 @@ CREATE TABLE menu_items (
     category_id INT,
     FOREIGN KEY (category_id) REFERENCES categories(id)
         ON DELETE SET NULL
-        ON UPDATE CASCADE
-) ENGINE=InnoDB;
+);
 
--- =========================
+-- ==============================
 -- ORDERS TABLE
--- =========================
+-- ==============================
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
-    total_amount DECIMAL(10,2) NOT NULL,
-    status ENUM('pending', 'paid', 'preparing', 'completed', 'cancelled') DEFAULT 'pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE SET NULL
-        ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    total_amount DECIMAL(10,2),
+    status ENUM('pending','paid','preparing','completed','cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- =========================
+-- ==============================
 -- ORDER ITEMS TABLE
--- =========================
+-- ==============================
 CREATE TABLE order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
-    menu_item_id INT NOT NULL,
-    quantity INT NOT NULL DEFAULT 1,
-    price DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (menu_item_id) REFERENCES menu_items(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    order_id INT,
+    menu_item_id INT,
+    quantity INT DEFAULT 1,
+    price DECIMAL(10,2)
+);
 
--- =========================
+-- ==============================
 -- PAYMENTS TABLE
--- =========================
+-- ==============================
 CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
-    payment_method ENUM('card', 'cash', 'upi') NOT NULL,
-    payment_status ENUM('pe_
+    order_id INT,
+    payment_method ENUM('card','cash','upi'),
+    payment_status ENUM('pending','completed','failed') DEFAULT 'pending',
+    paid_at TIMESTAMP NULL
+);
+
+-- ==============================
+-- INSERT CATEGORIES
+-- ==============================
+INSERT INTO categories (id, name) VALUES
+(1, 'Starters'),
+(2, 'Main Course'),
+(3, 'Desserts'),
+(4, 'Beverages');
+
+-- ==============================
+-- INSERT MENU ITEMS (1–24)
+-- ==============================
+INSERT INTO menu_items (id, name, description, price, image, category_id) VALUES
+(1, 'Veg Spring Rolls', 'Crispy vegetable rolls', 120.00, 'spring_rolls.jpg', 1),
+(2, 'Paneer Tikka', 'Grilled paneer cubes', 180.00, 'paneer_tikka.jpg', 1),
+(3, 'Chicken 65', 'Spicy fried chicken', 200.00, 'chicken_65.jpg', 1),
+(4, 'French Fries', 'Golden fried potatoes', 100.00, 'fries.jpg', 1),
+(5, 'Veg Biryani', 'Aromatic rice with vegetables', 220.00, 'veg_biryani.jpg', 2),
+(6, 'Chicken Biryani', 'Hyderabadi chicken biryani', 280.00, 'chicken_biryani.jpg', 2),
+(7, 'Paneer Butter Masala', 'Creamy paneer curry', 250.00, 'paneer_butter.jpg', 2),
+(8, 'Butter Chicken', 'Rich tomato chicken curry', 300.00, 'butter_chicken.jpg', 2),
+(9, 'Dal Tadka', 'Yellow lentils tempered', 180.00, 'dal_tadka.jpg', 2),
+(10, 'Veg Fried Rice', 'Rice with mixed vegetables', 170.00, 'veg_fried_rice.jpg', 2),
+(11, 'Chicken Fried Rice', 'Rice with chicken & spices', 210.00, 'chicken_fried_rice.jpg', 2),
+(12, 'Veg Noodles', 'Stir fried noodles', 160.00, 'veg_noodles.jpg', 2),
+(13, 'Chicken Noodles', 'Noodles with chicken', 200.00, 'chicken_noodles.jpg', 2),
+(14, 'Gulab Jamun', 'Milk-based sweet balls', 90.00, 'gulab_jamun.jpg', 3),
+(15, 'Ice Cream', 'Vanilla ice cream scoop', 80.00, 'ice_cream.jpg', 3),
+(16, 'Brownie', 'Chocolate brownie', 120.00, 'brownie.jpg', 3),
+(17, 'Chocolate Cake', 'Soft chocolate cake', 150.00, 'cake.jpg', 3),
+(18, 'Soft Drink', 'Chilled carbonated drink', 50.00, 'soft_drink.jpg', 4),
+(19, 'Fresh Lime Soda', 'Refreshing lime drink', 60.00, 'lime_soda.jpg', 4),
+(20, 'Cold Coffee', 'Chilled coffee with cream', 90.00, 'cold_coffee.jpg', 4),
+(21, 'Hot Coffee', 'Fresh brewed coffee', 70.00, 'hot_coffee.jpg', 4),
+(22, 'Tea', 'Indian masala tea', 40.00, 'tea.jpg', 4),
+(23, 'Milk Shake', 'Thick flavoured shake', 110.00, 'milkshake.jpg', 4),
+(24, 'Mineral Water', 'Packaged drinking water', 30.00, 'water.jpg', 4);
 
 
 Step 4 — Import Seed Data
