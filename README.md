@@ -128,6 +128,86 @@ Step 3 — Create the Database
 CREATE DATABASE dineease;
 USE dineease;
 
+-- Create database
+CREATE DATABASE IF NOT EXISTS dineease;
+USE dineease;
+
+-- =========================
+-- USERS TABLE
+-- =========================
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('customer', 'admin') DEFAULT 'customer',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- =========================
+-- CATEGORIES TABLE
+-- =========================
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+-- =========================
+-- MENU ITEMS TABLE
+-- =========================
+CREATE TABLE menu_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    image VARCHAR(255),
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- =========================
+-- ORDERS TABLE
+-- =========================
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    total_amount DECIMAL(10,2) NOT NULL,
+    status ENUM('pending', 'paid', 'preparing', 'completed', 'cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- =========================
+-- ORDER ITEMS TABLE
+-- =========================
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    menu_item_id INT NOT NULL,
+    quantity INT NOT NULL DEFAULT 1,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (menu_item_id) REFERENCES menu_items(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- =========================
+-- PAYMENTS TABLE
+-- =========================
+CREATE TABLE payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    payment_method ENUM('card', 'cash', 'upi') NOT NULL,
+    payment_status ENUM('pe_
+
+
 Step 4 — Import Seed Data
 
 Open the SQL tab
